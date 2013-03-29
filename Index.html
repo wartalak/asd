@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="Js/jquery-1.8.2.js"></script>
+    <script src="Js/kendo.aspnetmvc.min.js"></script>
+    <script src="Js/kendo.web.1315.js"></script>
+    <link href="Css/everest.common.css" rel="stylesheet" />
+    <link href="Css/kendo.metro.css" rel="stylesheet" />
+</head>
+<body>
+        <div id="example" class="k-content">
+            <div id="grid"></div>
+            <script>
+                $(document).ready(function() {
+                    $("#grid").kendoGrid({
+                        dataSource: {
+                            type: "odata",
+                            transport: {
+                                read: "http://demos.kendoui.com/service/Northwind.svc/Orders"
+                            },
+                            schema: {
+                                model: {
+                                    fields: {
+                                        OrderID: { type: "number" },
+                                        Freight: { type: "number" },
+                                        ShipName: { type: "string" },
+                                        OrderDate: { type: "date" },
+                                        ShipCity: { type: "string" }
+                                    }
+                                }
+                            },
+                            pageSize: 20,
+                            serverPaging: false,
+                            serverFiltering: false,
+                            serverSorting: false
+                        },
+                        height: 430,
+                        filterable: false,
+                        sortable: false,
+                        pageable: false,
+                        columns: [{
+                                field:"OrderID",
+                                filterable: false
+                            },
+                            "Freight",
+                            {
+                                field: "OrderDate",
+                                title: "Order Date",
+                                width: 120,
+                                format: "{0:MM/dd/yyyy}"
+                            }, {
+                                field: "ShipName",
+                                title: "Ship Name",
+                                width: 260
+                            }, {
+                                field: "ShipCity",
+                                title: "Ship City",
+                                width: 150
+                            }
+                        ]
+                    });
+                });
+            </script>
+        </div>
+</body>
+</html>
